@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+        <div class="container" id="container">
+
+            <div class="d-flex justify-content-center h-100">
+                <div class="card third">
+                    
+                    <div class="card-header">
+                        <br><h3>Create Blog</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="/blog/<%= blogs._id %>/update" class="create" method="post" id="create">
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="title" name="newblog[title]" placeholder="TItle" value="<%= blogs.title %>" required>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-image"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="image" name="newblog[image]" placeholder="link" value="<%= blogs.image %>" required>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                </div>
+                                <textarea rows="10" cols="80" class="form-control" id="body" name="newblog[body]" form="create" > <%= blogs.body %></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="btn float-right login_btn" type="submit" value="Update!">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('partials/footer') %>

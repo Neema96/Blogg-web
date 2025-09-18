@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<div class="container" id="container">
+  <div class="card cards_bg">
+    <div class="card-body">
+      <img class="card-header homepic2" src="<%= blogs[0].image %>"> 
+      <h2 class="card-title"> <%= blogs[0].title %> </h2>
+      <p class="card-text"> <%= blogs[0].body %> </p>
+      <% if (blogs[0].isauthor){ %>
+      <form action="/blog/<%= blogs[0]._id %>/delete" method="post">
+        <div class="form-group">
+          <input class="btn float-right updateBtn" type="submit" value="Delete">
+      </form>
+      <form action="/blog/<%= blogs[0]._id %>/update" method="get">
+          <input class="btn float-right updateBtn" type="submit" value="Update">
+        </div>
+      </form>
+      <% }%>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

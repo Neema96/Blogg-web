@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+    <div class="container" id="container">
+        <% blogs.forEach(blog => { %>
+            <br>
+            <div class="card cards_bg">
+              <div class="d-flex flex-row">
+                <div class="p-2 card-header">
+                  <img class="homePic" src= <%= blog.image %>> 
+                </div>
+                <div class="p-2">
+                    <h2 class="card-title"> <%= blog.title %> </h2>
+                    <p class="card-text"> <%= blog.body.slice(0,110) %>... </p>
+                    <a href="/blog/<%= blog._id %>" class="card-link">Read More...</a>
+                </div>
+              </div>
+            </div>
+            <br>
+        <%}) %>
+    </div>
+
+<%- include('partials/footer') %>
