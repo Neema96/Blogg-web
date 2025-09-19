@@ -1,5 +1,5 @@
 const Model = require('../model/blog');
-
+const User = require('../model/user');
 // --------------------- Middleware: Require Signin ---------------------
 exports.requireSignin = (req, res, next) => {
   if (!req.cookies.id) {
@@ -105,5 +105,28 @@ exports.updateBlog = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
+  }
+};
+
+// --------------------- Show Summary Blog ---------------------
+exports.showSummaryBlog = async (req, res) => {
+  try {
+     // Fetch blogs only once (attach cookie firstname for navbar)
+    let blogs = { firstname: req.cookies.firstname };
+    let firstname = req.cookies.firstname;
+
+    // Fetch users and their blogs
+    const users = await User.find({});
+    for (let user of users) {
+      const userBlogs = await Model.find({ userId: user._id });
+      user.blogCount = userBlogs.length;
+      user.blogTitles = userBlogs.map(b => b.title);
+    }
+
+    // Pass everything to view
+    res.render('summary', { blogs, users, firstname });
+  } catch (err) {
+    console.error(err);
+    //res.redirect('/');
   }
 };
