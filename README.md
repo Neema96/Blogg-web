@@ -10,4 +10,4 @@ npm install
 npm start
 ```
 
-### Thank you again! I have deployed the application. You can view it [here](https://blog-lp.herokuapp.com)
+### Thank you again! 
