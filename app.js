@@ -12,6 +12,11 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use('/views', express.static('views'))
 dotenv.config();
+// 2. Make firstname available in all views
+app.use((req, res, next) => {
+  res.locals.firstname = req.cookies.firstname || '';
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

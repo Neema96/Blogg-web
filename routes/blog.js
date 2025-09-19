@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { requireSignin, renderHome, createBlog, showSingleBlog, showYourBlog, updateBlog, updateBlogget, deletePost } = require('../controllers/blog');
+const { requireSignin, renderHome, createBlog, showSingleBlog, showYourBlog, updateBlog, updateBlogget, deletePost, showSummaryBlog } = require('../controllers/blog');
 
 // Blog GET routes
 router.get('/', requireSignin, renderHome);
@@ -11,7 +11,9 @@ router.get('/createBlog', requireSignin, function(req, res) {
 });
 router.get('/blog/:id', showSingleBlog);
 router.get('/showOwn', requireSignin, showYourBlog);
-router.get('/blog/:id/update', requireSignin, updateBlogget);   
+router.get('/blog/:id/update', requireSignin, updateBlogget); 
+//summary blog route
+router.get('/summaryBlog', requireSignin, showSummaryBlog);
 
 // Blog POST routes
 router.post('/createBlog', requireSignin, createBlog);

@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4 mb-5 bg-white rounded" style="width: 900px; border: none;">
+        <h2 class="text-center mb-2" id="blog-h2" style="font-weight: bold; letter-spacing: 1px;">
+            <i class="fa fa-users" aria-hidden="true" style="color: #ffc312; margin-right: 10px;"></i>
+            <span style="color: #222f3e;">Blog Summary Dashboard</span>
+        </h2>
+        <p class="text-center text-muted mb-4" style="font-size: 1.1rem;">
+            See how many blogs each user has posted.
+        </p>
+        <table class="table table-hover table-bordered rounded" style="background-color: #f8f9fa;">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="background-color: #222f3e; color: #ffc312;">User Name</th>
+                    <th style="background-color: #222f3e; color: #ffc312;">Blogs</th>
+                    <th style="background-color: #222f3e; color: #ffc312;">Total Blogs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td style="vertical-align: middle; font-weight: 500; color: #222f3e;">
+                            <i class="fa fa-user-circle" aria-hidden="true" style="color: #2f3640; margin-right: 6px;"></i>
+                            <%= user.firstname %>
+                        </td>
+                        <td>
+                            <% if (user.blogTitles && user.blogTitles.length > 0) { %>
+                                <ul style="padding-left: 18px; margin-bottom: 0; color: #10ac84;">
+                                    <% user.blogTitles.forEach(title => { %>
+                                        <li style="margin-bottom: 2px;"><%= title %></li>
+                                    <% }) %>
+                                </ul>
+                            <% } else { %>
+                                <span class="text-muted" style="color: #ee5253 !important;">No blogs yet</span>
+                            <% } %>
+                        </td>
+                        <td style="text-align: center; font-size: 1.1rem;">
+                            <span class="badge badge-pill badge-warning" style="font-size: 1rem; color: #222f3e;"><%= user.blogCount %></span>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
